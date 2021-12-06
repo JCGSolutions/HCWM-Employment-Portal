@@ -1,0 +1,13 @@
+ver: 0.0.0
+Deployed: 12/6/21
+ - Basic planed work to be completed.
+
+=================================================================
+Known Bugs:
+
+In Progress:
+
+Planned:
+ - Admin page for management
+ - Elementor form (template section) for capturing employment opportunites
+ - Elementor template section for displaying employment opportunities
