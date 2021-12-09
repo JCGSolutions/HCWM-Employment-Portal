@@ -1,6 +1,11 @@
+ver: 0.1.0
+Deployed: 12/8/21
+	- Added the employment admin page
+	- Added management.inc.php with a simple placeholder
+
 ver: 0.0.0
 Deployed: 12/6/21
- - Basic planed work to be completed.
+	- Basic planed work to be completed.
 
 =================================================================
 Known Bugs:
@@ -8,6 +13,6 @@ Known Bugs:
 In Progress:
 
 Planned:
- - Admin page for management
- - Elementor form (template section) for capturing employment opportunites
- - Elementor template section for displaying employment opportunities
+	- Admin page for management
+	- Elementor form (template section) for capturing employment opportunites
+	- Elementor template section for displaying employment opportunities
