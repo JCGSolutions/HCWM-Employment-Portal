@@ -1,3 +1,6 @@
+ver: 0.3.0
+	- Estblished call to DB to get Elementor jobs.
+
 ver: 0.2.0
 	- Added JobListing.inc.php
 	- Created the shortcode to call JobListing.inc.php
