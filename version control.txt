@@ -1,3 +1,6 @@
+ver: 0.3.1
+	- Version update because I got my GitHub versions off.
+	
 ver: 0.3.0
 	- Estblished call to DB to get Elementor jobs.
 
