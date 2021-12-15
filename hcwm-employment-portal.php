@@ -4,7 +4,7 @@
 	Plugin URI: NA
 	Description: Plugin to add the employment portal / management to the HCWM web site
 	Author: JCG Solutions, LLC.
-	Version: 0.1.1
+	Version: 0.2.0
 	Author URI: https://jcgsolutions.com
 	License: GPL2
 	GitHub Plugin URI: JCGSolutions/HCWM-Employment-Portal
@@ -33,4 +33,14 @@ function hcwm_employment_pages() {
 function HCWM_Employment() {
 	include "includes/Management.inc.php";
 }
+
+// Job Listing Shortcode
+function hcwm_Job_Listing() {
+	ob_start();	// This function compiles the include and transforms it into a string to be echoed out correctly
+		include "includes/JobListing.inc.php";
+	return ob_get_clean();
+}
+
+
+add_shortcode("hcwm-job-listing", "hcwm_Job_Listing");
 ?>
