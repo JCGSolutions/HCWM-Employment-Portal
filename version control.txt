@@ -1,7 +1,16 @@
+ver: 0.4.0
+Deployed: 12/16/21
+	- Added the job posting table
+	- Added the shortcode to call the job form
+	- Added JobForm.inc.php
+	- Added basic instructions to the admin page about what shortcodes to use where
+
 ver: 0.3.1
+Deployed: 12/15/12
 	- Version update because I got my GitHub versions off.
 	
 ver: 0.3.0
+Deployed: 12/15/12
 	- Estblished call to DB to get Elementor jobs.
 
 ver: 0.2.0
