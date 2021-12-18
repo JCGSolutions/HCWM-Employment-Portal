@@ -1,5 +1,9 @@
+ver: 0.5.1
+Deployed: 12/18/21
+	- Had a spelling error in an enquee script
+
 ver: 0.5.0
-Deployed: NA
+Deployed: 12/18/21
 	- Changed the table reference from Elementor to hcwm_job_postings
 	- Renamed style.css => hcwm_jobs.css to avoid any possible collisions
 	- Added a very basic DB insert to test the connection
