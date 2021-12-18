@@ -1,9 +1,15 @@
 <?php
 
-// Set table name #1
-$table_name = $wpdb->prefix . 'hcwm_job_postings';
+// if uninstall.php is not called by WordPress, die
+if (!defined('WP_UNINSTALL_PLUGIN')) {
+    die;
+}
+ 
+// drop a custom database table
+global $wpdb;
 
-// drop the table from the database.
-$wpdb->query("DROP TABLE IF EXISTS $table_name");
+$wpdb->query("DROP TABLE IF EXISTS {$wpdb->prefix}hcwm_job_postings");
+$option_name = 'tbl_hcwm_job_postings_db_version';
+delete_option($option_name);
 
 ?>

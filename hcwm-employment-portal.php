@@ -4,80 +4,82 @@
 	Plugin URI: NA
 	Description: Plugin to add the employment portal / management to the HCWM web site
 	Author: JCG Solutions, LLC.
-	Version: 0.5.2
+	Version: 0.5.3
 	Author URI: https://jcgsolutions.com
 	License: GPL2
 	GitHub Plugin URI: JCGSolutions/HCWM-Employment-Portal
 */
 
-### START NEW TABLE ### 
-// table name: hcwm_job_postings (find and replace on this)
-// Added to uninstall.php: FALSE
-
-// Version information - used for WP to check if there is a database schema to be updated
-global $tbl_hcwm_job_postings_db_version;
-$tbl_hcwm_job_postings_db_version = '1.0';
-
-function Create_tbl_hcwm_job_postings () {
-	// Set global variables
-	global $wpdb;  
+	### START NEW TABLE ### 
+	// table name: hcwm_job_postings (find and replace on this)
+	// Added to uninstall.php: TRUE
+	
+	// Version information - used for WP to check if there is a database schema to be updated
 	global $tbl_hcwm_job_postings_db_version;
-	global $tbl_hcwm_job_postings_db_alter;
-	
-	// Set function variables
-	$installed_ver = get_option("tbl_hcwm_job_postings_db_version");
-	$table_name = $wpdb->prefix . "hcwm_job_postings";
-	$charset_collate = $wpdb->get_charset_collate();
-	
-	// Set up the create table SQL
-	$SQL = "CREATE TABLE $table_name (
-		RecordID int(1) NOT NULL AUTO_INCREMENT,
-		Organization varchar(255),
-		Contact varchar(50),
-		ContactEmail varchar(50),
-		ContactPhone varchar(15),
-		Job varchar(50),
-		StartDate datetime,
-		EndDate datetime,
-		Wage decimal(10,2),
-		Dexcription varchar(Max),
-		Approved bit,
-		UNIQUE KEY RecordID (RecordID)
-	) $charset_collate;";
-	
-	// Set database options to record versioning
-	require_once(ABSPATH . 'wp-admin/includes/upgrade.php');
-	dbDelta($SQL);
-	
-	// Add table options
-	add_option('tbl_hcwm_job_postings_db_version', $tbl_hcwm_job_postings_db_version);
-	
-	// This if statement if used if the versioning is different than the saved version.  If true, it will update the database schema
-	// !IMPORTANT: ALL LINES EXCEPT 'UNIQUE KEY' NEED TO END WITH AN ',' UNLESS THERE ARE KEYS, THEN THE 'UNIQUE KEY' NEEDS AN ','
-	if ($installed_ver != $tbl_hcwm_job_postings_db_version) {
-		// Update database versioning
+	$tbl_hcwm_job_postings_db_version = '1.0';
+
+	function Create_tbl_hcwm_job_postings () {
+		// Set global variables
+		global $wpdb;  
+		global $tbl_hcwm_job_postings_db_version;
+		global $tbl_hcwm_job_postings_db_alter;
+		
+		// Set function variables
+		$installed_ver = get_option("tbl_hcwm_job_postings_db_version");
+		$table_name = $wpdb->prefix . "hcwm_job_postings";
+		$charset_collate = $wpdb->get_charset_collate();
+		
+		// Set up the create table SQL
+		$SQL = "CREATE TABLE $table_name (
+			RecordID int(1) NOT NULL AUTO_INCREMENT,
+			Organization varchar(150),
+			Contact varchar(75),
+			ContactPhone varchar(20),
+			ContactEmail varchar(150),
+			Job varchar(250),
+			Description varchar(50000),
+			StartDate datetime,
+			EndDate datetime,
+			CloseDate datetime,
+			ApplyDate datetime,
+			Wage decimal(10,2),
+			Approved bit,
+			UNIQUE KEY RecordID (RecordID)
+		) $charset_collate;";
+		
+		// Set database options to record versioning
 		require_once(ABSPATH . 'wp-admin/includes/upgrade.php');
 		dbDelta($SQL);
-		update_option("tbl_hcwm_job_postings_db_version", $tbl_hcwm_job_postings_db_version);
+		
+		// Add table options
+		add_option('tbl_hcwm_job_postings_db_version', $tbl_hcwm_job_postings_db_version);
+		
+		// This if statement if used if the versioning is different than the saved version.  If true, it will update the database schema
+		// !IMPORTANT: ALL LINES EXCEPT 'UNIQUE KEY' NEED TO END WITH AN ',' UNLESS THERE ARE KEYS, THEN THE 'UNIQUE KEY' NEEDS AN ','
+		if ($installed_ver != $tbl_hcwm_job_postings_db_version) {
+			// Update database versioning
+			require_once(ABSPATH . 'wp-admin/includes/upgrade.php');
+			dbDelta($SQL);
+			update_option("tbl_hcwm_job_postings_db_version", $tbl_hcwm_job_postings_db_version);
+		}
 	}
-}
-
-// Call function to create table(s)
-register_activation_hook( __FILE__, 'Create_tbl_hcwm_job_postings');
-
-// Call functions to check for DB update
-function hcwm_job_postings_update_db_check() {
-	// Set global variables
-	global $tbl_hcwm_job_postings_db_version;
 	
-	// If versioning is different then call function to update the table
-	if (get_site_option('tbl_hcwm_job_postings_db_version') != $tbl_hcwm_job_postings_db_version) {
-		Create_tbl_hcwm_job_postings();
+	// Call function to create table(s)
+	register_activation_hook( __FILE__, 'Create_tbl_hcwm_job_postings');
+	
+	// Call functions to check for DB update
+	function hcwm_job_postings_update_db_check() {
+		// Set global variables
+		global $tbl_hcwm_job_postings_db_version;
+		
+		// If versioning is different then call function to update the table
+		if (get_site_option('tbl_hcwm_job_postings_db_version') != $tbl_hcwm_job_postings_db_version) {
+			Create_tbl_hcwm_job_postings();
+		}
 	}
-}
-	
-// Add WP action to check the database versioning when the plugin is loaded
-add_action('plugins_loaded', 'hcwm_job_postings_update_db_check' );
+		
+	// Add WP action to check the database versioning when the plugin is loaded
+	add_action('plugins_loaded', 'hcwm_job_postings_update_db_check' );
 		
 ### END NEW TABLE ###
 

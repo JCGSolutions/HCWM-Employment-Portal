@@ -8,6 +8,6 @@ $DBFunctions = new HCWM_Job_Postings;
 // Get all location catagories
 $Jobs = $DBFunctions->GetJobPostings();
 
-print_r($Jobs);
+//print_r($Jobs);
 
 ?>
