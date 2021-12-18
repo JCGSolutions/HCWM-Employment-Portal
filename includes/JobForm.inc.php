@@ -1,1 +1,1 @@
-This is the includes for the new form.
+<form id="frmHCWMJobPostings" action="<?php echo plugins_url('../Scripts/PHP/EXAMPLE/insert.php', __FILE__); ?>"><label>Organization: <input type="text" name="hcwm_Organizations"></label><input type="submit"></form>

@@ -1,3 +1,9 @@
+ver: 0.5.0
+Deployed: NA
+	- Changed the table reference from Elementor to hcwm_job_postings
+	- Renamed style.css => hcwm_jobs.css to avoid any possible collisions
+	- Added a very basic DB insert to test the connection
+
 ver: 0.4.0
 Deployed: 12/16/21
 	- Added the job posting table

@@ -4,7 +4,7 @@
 	Plugin URI: NA
 	Description: Plugin to add the employment portal / management to the HCWM web site
 	Author: JCG Solutions, LLC.
-	Version: 0.4.0
+	Version: 0.5.0
 	Author URI: https://jcgsolutions.com
 	License: GPL2
 	GitHub Plugin URI: JCGSolutions/HCWM-Employment-Portal
@@ -140,21 +140,18 @@ class HCWM_Job_Postings{
 		global $wpdb;
 		$db = new mysqli(DB_HOST, DB_USER, DB_PASSWORD, DB_NAME);
 
-		$Table = $wpdb->prefix . "e_submissions_values";
+		$Table = $wpdb->prefix . "hcwm_job_postings";
 
-		$SQL = "SELECT id, submission_id, key, value FROM $Table WHERE  ORDER BY submission_id";
+		$SQL = "SELECT RecordID FROM $Table";
 		$STMT = $db->prepare($SQL);
 		$STMT->execute();
-		$STMT->bind_result($ID, $SubID,$Key,$Value);
+		$STMT->bind_result($RecordID);
 
 		$JobListing = array();
 
 		while($STMT->fetch()){
 			$JobListing[] = array(
-				'ID' => $ID,
-				'SubID' => $SubID,
-				'Key' => $Key,
-				'Value' => $Value);
+				'RecordID' => $RecordID);
 		}
 
 		return $JobListing;
