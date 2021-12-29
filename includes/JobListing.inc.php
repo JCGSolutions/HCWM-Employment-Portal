@@ -8,6 +8,8 @@ $DBFunctions = new HCWM_Job_Postings;
 // Get all location catagories
 $Jobs = $DBFunctions->GetJobPostings();
 
-//print_r($Jobs);
+for($i = 0; $i < sizeof($Jobs); $i++){
+	echo "Name: " . gform_get_meta($Jobs[$i]['EntryID'],'1') . "<br>";
+}
 
 ?>

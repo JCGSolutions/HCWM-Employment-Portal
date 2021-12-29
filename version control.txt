@@ -1,8 +1,10 @@
 ver: 0.5.3
-Deployed: NA
+Deployed: 12/29/21
 	- Fixed the function to create the job posting table
 	- Fixed the function to remove the DB and options when plugin is deleted
 	- Updated the job DB structure
+	- Updated job listing query to get distinct entry_ids, then referrence Gravity Forms to add additional data
+	- Looped through $Jobs array for job listings
 
 ver: 0.5.2
 Deployed: 12/18/21

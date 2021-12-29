@@ -142,18 +142,18 @@ class HCWM_Job_Postings{
 		global $wpdb;
 		$db = new mysqli(DB_HOST, DB_USER, DB_PASSWORD, DB_NAME);
 
-		$Table = $wpdb->prefix . "hcwm_job_postings";
+		$Table = $wpdb->prefix . "gf_entry_meta";
 
-		$SQL = "SELECT RecordID FROM $Table";
+		$SQL = "SELECT DISTINCT entry_id FROM $Table WHERE form_id = 2";
 		$STMT = $db->prepare($SQL);
 		$STMT->execute();
-		$STMT->bind_result($RecordID);
+		$STMT->bind_result($EntryID);
 
 		$JobListing = array();
 
 		while($STMT->fetch()){
 			$JobListing[] = array(
-				'RecordID' => $RecordID);
+				'EntryID' => $EntryID);
 		}
 
 		return $JobListing;
@@ -163,4 +163,11 @@ class HCWM_Job_Postings{
 	}
 
 }
+
+// Register CSS
+Function HCWM_inc_CSS(){
+	wp_register_style( 'HCWM-Job-CSS', plugins_url('/CSS/Standard.css?' . time(), __FILE__ ),  array(), '1',  'all' );
+}
+
+add_action('wp_enqueue_scripts', 'HCWM_inc_CSS');
 ?>

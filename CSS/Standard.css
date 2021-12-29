@@ -1,0 +1,24 @@
+<style>
+	.HCWM-Control-100,
+	.HCWM-Control-75, 
+	.HCWM-Control-50,
+	.HCWM-Control-25 {
+	}
+
+	.HCWM-Control-100 {
+		width: 100%;
+	}
+
+	.HCWM-Control-75 {
+		width: 75%;
+	}
+
+	.HCWM-Control-50 {
+		width: 50%;
+	}
+
+	.HCWM-Control-25 {
+		width: 25%;
+	}
+
+</style>
