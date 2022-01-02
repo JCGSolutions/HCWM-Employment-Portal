@@ -5,11 +5,8 @@ if (!defined('WP_UNINSTALL_PLUGIN')) {
     die;
 }
  
-// drop a custom database table
-global $wpdb;
 
-$wpdb->query("DROP TABLE IF EXISTS {$wpdb->prefix}hcwm_job_postings");
-$option_name = 'tbl_hcwm_job_postings_db_version';
+$option_name = 'hcwm_employment_db_options';
 delete_option($option_name);
 
 ?>

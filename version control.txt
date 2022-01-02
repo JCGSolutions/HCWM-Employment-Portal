@@ -1,3 +1,10 @@
+ver: 0.6.0
+Deployed: NA
+	- Removed the bulding of the custom DB table (using Gravity Forms now)
+	- Added multiple custom meta options
+	- Minor update to Management.inc.php to put a placeholder for GF links and job posting sort
+	- Refined the job posting array to be able to build it out faster
+
 ver: 0.5.3
 Deployed: 12/29/21
 	- Fixed the function to create the job posting table
