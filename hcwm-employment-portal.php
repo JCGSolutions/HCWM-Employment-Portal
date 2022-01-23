@@ -4,7 +4,7 @@
 	Plugin URI: NA
 	Description: Plugin to add the employment portal / management to the HCWM web site
 	Author: JCG Solutions, LLC.
-	Version: 0.6.0
+	Version: 0.6.1
 	Author URI: https://jcgsolutions.com
 	License: GPL2
 	GitHub Plugin URI: JCGSolutions/HCWM-Employment-Portal
@@ -16,12 +16,12 @@
 ##
 #######################################################################
 
-function hcwm_employment_db_options() {
+function hcwm_employment_gf_link() {
 	// Gravity Forms link
 	add_option('hcwm_employment_gf_link', 1); // By default I am setting form #1
 }
 
-add_action('plugin_loaded', 'hcwm_employment_db_options');
+add_action('plugin_loaded', 'hcwm_employment_gf_link');
 
 function hcwm_employment_jobListing_sort() {
 	// Sort job listing
@@ -29,6 +29,13 @@ function hcwm_employment_jobListing_sort() {
 }
 
 add_action('plugin_loaded', 'hcwm_employment_jobListing_sort');
+
+function hcwm_employment_jobDetails_URL() {
+	// Sort job listing
+	add_option('hcwm_employment_jobDetails_URL', ''); // This is not set yet
+}
+
+add_action('plugin_loaded', 'hcwm_employment_jobDetails_URL');
 
 
 #######################################################################
@@ -70,22 +77,21 @@ function HCWM_Employment_Management() {
 
 // Job Listing Shortcode
 function hcwm_Job_Listing() {
-	ob_start();	// This function compiles the include and transforms it into a string to be echoed out correctly
+	ob_start();	
 		include "includes/JobListing.inc.php";
 	return ob_get_clean();
 }
 
 add_shortcode("hcwm-job-listing", "hcwm_Job_Listing");
 
-// Job Listing Shortcode
-function hcwm_Job_Form() {
-	ob_start();	// This function compiles the include and transforms it into a string to be echoed out correctly
-		include "includes/JobForm.inc.php";
+// Job Details Shortcode
+function hcwm_Job_Details() {
+	ob_start();	
+		include "includes/JobDetails.inc.php";
 	return ob_get_clean();
 }
 
-add_shortcode("hcwm-job-form", "hcwm_Job_Form");
-
+add_shortcode("hcwm-job-details", "hcwm_Job_Details");
 
 #######################################################################
 ##
@@ -102,7 +108,7 @@ class HCWM_Job_Postings{
 
 		$Table = $wpdb->prefix . "gf_entry_meta";
 
-		$SQL = "SELECT DISTINCT entry_id FROM $Table WHERE form_id = 2";
+		$SQL = "SELECT DISTINCT entry_id FROM $Table WHERE form_id = 3";
 		$STMT = $db->prepare($SQL);
 		$STMT->execute();
 		$STMT->bind_result($EntryID);
@@ -118,12 +124,47 @@ class HCWM_Job_Postings{
 
 		for($i = 0; $i < sizeof($EntryIDs); $i++){
 			$JobListing[] = array(
-				'EntryID' => $EntryIDs[$i],
-				'Name' => gform_get_meta($EntryIDs[$i]['EntryID'],'1')
+				'EntryID' => $EntryIDs[$i]['EntryID'],
+				'Job Title' => gform_get_meta($EntryIDs[$i]['EntryID'],'7'),
+				'Company' => gform_get_meta($EntryIDs[$i]['EntryID'],'18'),
+				'Location' => gform_get_meta($EntryIDs[$i]['EntryID'],'8'),
+				'Posting Close Date' => gform_get_meta($EntryIDs[$i]['EntryID'],'14')
 			);
 		}
 
 		return $JobListing;
+
+		$STMT->close();
+
+	}
+
+	function GetJobDetails($Entry){
+
+		$JobDetails = array(
+			'EntryID' => $Entry,
+			'Name' => gform_get_meta($Entry,'2.3') . ' ' . gform_get_meta($Entry,'2.6'),
+			'Email' => gform_get_meta($Entry,'3'),
+			'Phone' => gform_get_meta($Entry,'4'),
+			'Job Title' => gform_get_meta($Entry,'7'),
+			'Location' => gform_get_meta($Entry,'8'),
+			'Type' => gform_get_meta($Entry,'9'),
+			'Posting Close Date' => gform_get_meta($Entry,'14'),
+			'Start Date' => gform_get_meta($Entry,'15'),
+			'End Date' => gform_get_meta($Entry,'16'),
+			'Wage' => gform_get_meta($Entry,'11'),
+			'Description' => gform_get_meta($Entry,'10'),
+			'Apply' => gform_get_meta($Entry,'27'),
+			'File' => gform_get_meta($Entry,'12'),
+			'Application' => gform_get_meta($Entry,'13'),
+			'Company' => gform_get_meta($Entry,'18'),
+			'CompanyDescription' => gform_get_meta($Entry,'24'),
+			'CompanyAddress' => gform_get_meta($Entry,'25'),
+			'CompanyPhone' => gform_get_meta($Entry,'26'),
+			'Website' => gform_get_meta($Entry,'19'),
+			'Logo' => gform_get_meta($Entry,'23')
+		);
+
+		return $JobDetails;
 
 		$STMT->close();
 

@@ -1,5 +1,18 @@
-ver: 0.6.0
+ver: 0.6.1
 Deployed: NA
+	- Removed "jobform.inc.php"
+	- Built out the Gravity Form query
+	- Added version history link to the Management screen
+	- Made job links live
+	- Formated the job listing section
+	- Formated the job details section
+	- Split the GF job query into listings and details
+	- Added new placeholders in the management screen
+	- Created the shortcode for the job details page
+	- Linked the job listing and job details together
+
+ver: 0.6.0
+Deployed: 1/2/22
 	- Removed the bulding of the custom DB table (using Gravity Forms now)
 	- Added multiple custom meta options
 	- Minor update to Management.inc.php to put a placeholder for GF links and job posting sort
@@ -63,8 +76,12 @@ Deployed: 12/6/21
 Known Bugs:
 
 In Progress:
+	- Admin page for management
+		- Link to Gravity Form for review
+		- Link to Gravity Form to link form ID
+		- LInk to job detail page (URL)
+	- Job posting design
+		- Working to have a primary and secondary section.  The primary section will be visible in the inirial
+			view, with the secondary secion becoming visable with a "more information" button.
 
 Planned:
-	- Admin page for management
-	- Elementor form (template section) for capturing employment opportunites
-	- Elementor template section for displaying employment opportunities
