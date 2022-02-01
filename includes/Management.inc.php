@@ -19,6 +19,7 @@ Job Detail URL: <input id="HCWM_GF_DetailURL" type="textbox">
 <hr>
 How to use:<br>
 Add shortcode [hcwm-job-listing] to add the job listing section<br>
-Add shortcode [gravityform id="3" title="false" description="false" ajax="true"] to add the Gravity Form to accept new job postings.
+Add shortcode [hcwm-job-details] to add the job details section<br>
+Add shortcode [gravityform id="1" title="false" description="false" ajax="true"] to add the Gravity Form to accept new job postings.
 <hr>
 Configure

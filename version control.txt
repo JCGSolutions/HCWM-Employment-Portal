@@ -1,5 +1,9 @@
+ver: 0.7.0
+Deployed: 1/31/22
+	- Tweaked the plugin shortcodes to work propperly
+
 ver: 0.6.1
-Deployed: NA
+Deployed: 1/25/22
 	- Removed "jobform.inc.php"
 	- Built out the Gravity Form query
 	- Added version history link to the Management screen
