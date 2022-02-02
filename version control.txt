@@ -1,3 +1,7 @@
+ver: 0.8.0
+Deployed: 2/1/22
+	- Redesigned the management screen
+
 ver: 0.7.0
 Deployed: 1/31/22
 	- Tweaked the plugin shortcodes to work propperly
