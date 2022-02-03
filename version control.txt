@@ -1,10 +1,14 @@
+ver: 0.9.0
+Deployed: 2/2/22
+	- Redesigned the details section into two columns
+
 ver: 0.8.0
 Deployed: 2/1/22
 	- Redesigned the management screen
 
 ver: 0.7.0
 Deployed: 1/31/22
-	- Tweaked the plugin shortcodes to work propperly
+	- Tweaked the plugin shortcodes to work properly
 
 ver: 0.6.1
 Deployed: 1/25/22
@@ -21,7 +25,7 @@ Deployed: 1/25/22
 
 ver: 0.6.0
 Deployed: 1/2/22
-	- Removed the bulding of the custom DB table (using Gravity Forms now)
+	- Removed the building of the custom DB table (using Gravity Forms now)
 	- Added multiple custom meta options
 	- Minor update to Management.inc.php to put a placeholder for GF links and job posting sort
 	- Refined the job posting array to be able to build it out faster
@@ -29,9 +33,9 @@ Deployed: 1/2/22
 ver: 0.5.3
 Deployed: 12/29/21
 	- Fixed the function to create the job posting table
-	- Fixed the function to remove the DB and options when plugin is deleted
+	- Fixed the function to remove the DB and options when the plugin is deleted
 	- Updated the job DB structure
-	- Updated job listing query to get distinct entry_ids, then referrence Gravity Forms to add additional data
+	- Updated job listing query to get distinct entry_ids, then reference Gravity Forms to add additional data
 	- Looped through $Jobs array for job listings
 
 ver: 0.5.2
@@ -40,7 +44,7 @@ Deployed: 12/18/21
 
 ver: 0.5.1
 Deployed: 12/18/21
-	- Had a spelling error in an enquee script
+	- Had a spelling error in an enqueue script
 
 ver: 0.5.0
 Deployed: 12/18/21
@@ -69,7 +73,7 @@ ver: 0.2.0
 
 ver: 0.1.1
 Deployed: 12/9/21
-	- Had to modify the verion number as the last release didn't trigger an update
+	- Had to modify the version number as the last release didn't trigger an update
 	
 ver: 0.1.0
 Deployed: 12/8/21
@@ -78,18 +82,16 @@ Deployed: 12/8/21
 
 ver: 0.0.0
 Deployed: 12/6/21
-	- Basic planed work to be completed.
+	- Basic planned work to be completed.
 
 =================================================================
 Known Bugs:
 
 In Progress:
-	- Admin page for management
-		- Link to Gravity Form for review
-		- Link to Gravity Form to link form ID
-		- LInk to job detail page (URL)
-	- Job posting design
-		- Working to have a primary and secondary section.  The primary section will be visible in the inirial
-			view, with the secondary secion becoming visable with a "more information" button.
 
 Planned:
+	- Improve general Gravity Form query
+		- Including filters
+	- All posting need to be approved
+	- Dynamic GF ID
+	- Dynamic details URL
