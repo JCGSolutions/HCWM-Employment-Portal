@@ -53,25 +53,25 @@
 // Instantiate a new DB class object
 $DBFunctions = new HCWM_Job_Postings;
 
-// Get all location catagories
-$Jobs = $DBFunctions->GetJobPostings();
+// Get all job postings
+$Entries = $DBFunctions->HCWM_GF_Entries();
 
-for($i = 0; $i < sizeof($Jobs); $i++){
+for($i = 0; $i < sizeof($Entries); $i++){
 	echo "<div class='HCWM-Listing-Wrapper'>";
 		echo "<div class='HCWM-Listing-Col1'>";
-			echo "<span class='HCWM-Detail-Title'>" . $Jobs[$i]['Job Title'] . "</span><br><span class='HCWM-Detail-Company'>" . $Jobs[$i]['Company'] . "</span>";
+			echo "<span class='HCWM-Detail-Title'>" . $Entries[$i][7] . "</span><br><span class='HCWM-Detail-Company'>" . $Entries[$i][18] . "</span>";
 		echo "</div>";
 		
 		echo "<div class='HCWM-Listing-Col2'>";
-			echo $Jobs[$i]['Location'];
+			echo $Entries[$i][8];
 		echo "</div>";
 
 		echo "<div class='HCWM-Listing-Col3'>";
-			echo date_format($Jobs[$i]['Posting Close Date'],"Y/m/d");
+			echo date_format($Entries[$i][14],"Y/m/d");
 		echo "</div>";
 
 		echo "<div class='HCWM-Listing-Col4'>";
-			echo "<a href='https://sandbox.jcgsolutions.com/job-details/?Entry=" . $Jobs[$i]['EntryID'] . "'>View Job</a>";
+			echo "<a href='https://sandbox.jcgsolutions.com/job-details/?Entry=" . $Entries[$i]['id'] . "'>View Job</a>";
 		echo "</div>";
 
 	echo "</div>";

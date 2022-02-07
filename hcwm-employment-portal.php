@@ -4,7 +4,7 @@
 	Plugin URI: NA
 	Description: Plugin to add the employment portal / management to the HCWM web site
 	Author: JCG Solutions, LLC.
-	Version: 0.9.0
+	Version: 0.9.1
 	Author URI: https://jcgsolutions.com
 	License: GPL2
 	GitHub Plugin URI: JCGSolutions/HCWM-Employment-Portal
@@ -95,79 +95,42 @@ add_shortcode("hcwm-job-details", "hcwm_Job_Details");
 
 #######################################################################
 ##
-## Class to handle database interactions
+## Class to Gravity Forms job information
 ##
 #######################################################################
 
 class HCWM_Job_Postings{
 
-	function GetJobPostings(){
+	function HCWM_GF_Entries(){
 
-		global $wpdb;
-		$db = new mysqli(DB_HOST, DB_USER, DB_PASSWORD, DB_NAME);
+		$Search_Criteria = array( 'key' => '28', 'value' => 'Yes' );
 
-		$Table = $wpdb->prefix . "gf_entry_meta";
+		$Search_Criteria = array(
+    	'status'        => 'active',
+      'field_filters' => array(
+      	array(
+        	'key'   => '28',
+          'value' => 'Yes',
+        ),
 
-		$SQL = "SELECT DISTINCT entry_id FROM $Table WHERE form_id = 1";
-		$STMT = $db->prepare($SQL);
-		$STMT->execute();
-		$STMT->bind_result($EntryID);
+        array(
+        	'key'		=> '14',
+        	'operator' => '>=',
+        	'value'	=> date('Y-m-d'),
+        ),
+      )
+    );
 
-		$EntryIDs = array();
+		$Entries = GFAPI::get_entries(2,$Search_Criteria);
 
-		while($STMT->fetch()){
-			$EntryIDs[] = array(
-				'EntryID' => $EntryID);
-		}
-
-		$JobListing = array();
-
-		for($i = 0; $i < sizeof($EntryIDs); $i++){
-			$JobListing[] = array(
-				'EntryID' => $EntryIDs[$i]['EntryID'],
-				'Job Title' => gform_get_meta($EntryIDs[$i]['EntryID'],'7'),
-				'Company' => gform_get_meta($EntryIDs[$i]['EntryID'],'18'),
-				'Location' => gform_get_meta($EntryIDs[$i]['EntryID'],'8'),
-				'Posting Close Date' => gform_get_meta($EntryIDs[$i]['EntryID'],'14')
-			);
-		}
-
-		return $JobListing;
-
-		$STMT->close();
-
+		return $Entries;
 	}
 
-	function GetJobDetails($Entry){
+	function HCWM_GF_Details($EntryID){
 
-		$JobDetails = array(
-			'EntryID' => $Entry,
-			'Name' => gform_get_meta($Entry,'2.3') . ' ' . gform_get_meta($Entry,'2.6'),
-			'Email' => gform_get_meta($Entry,'3'),
-			'Phone' => gform_get_meta($Entry,'4'),
-			'Job Title' => gform_get_meta($Entry,'7'),
-			'Location' => gform_get_meta($Entry,'8'),
-			'Type' => gform_get_meta($Entry,'9'),
-			'Posting Close Date' => gform_get_meta($Entry,'14'),
-			'Start Date' => gform_get_meta($Entry,'15'),
-			'End Date' => gform_get_meta($Entry,'16'),
-			'Wage' => gform_get_meta($Entry,'11'),
-			'Description' => gform_get_meta($Entry,'10'),
-			'Apply' => gform_get_meta($Entry,'27'),
-			'File' => gform_get_meta($Entry,'12'),
-			'Application' => gform_get_meta($Entry,'13'),
-			'Company' => gform_get_meta($Entry,'18'),
-			'CompanyDescription' => gform_get_meta($Entry,'24'),
-			'CompanyAddress' => gform_get_meta($Entry,'25'),
-			'CompanyPhone' => gform_get_meta($Entry,'26'),
-			'Website' => gform_get_meta($Entry,'19'),
-			'Logo' => gform_get_meta($Entry,'23')
-		);
+		$Details = GFAPI::get_entry($EntryID);
 
-		return $JobDetails;
-
-		$STMT->close();
-
+		return $Details;
 	}
 
 }

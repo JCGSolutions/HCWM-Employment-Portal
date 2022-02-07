@@ -1,3 +1,9 @@
+ver: 1.0.0
+Deployed: NA
+	- Updated queries to the Gravity Forms API
+	- Added primary filter to be "approved"
+	- Added date filter to only show posting AFTER the posting close date
+
 ver: 0.9.0
 Deployed: 2/2/22
 	- Redesigned the details section into two columns

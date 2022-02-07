@@ -68,82 +68,46 @@ $Entry = $_GET['Entry'];
 // Instantiate a new DB class object
 $DBFunctions = new HCWM_Job_Postings;
 
-// Get all location catagories
-$Jobs = $DBFunctions->GetJobDetails($Entry);
+// Get all job details
+$Details = $DBFunctions->HCWM_GF_Details($Entry);
 
-echo "<span class='HCWM-Detail-Title'>" . $Jobs['Job Title'] . "</span><br>";
-echo "<span class='HCWM-Detail-Label'>Compensation:</span> " . $Jobs['Wage'] . "<br>";
-echo $Jobs['Type'] . " &#8226; " . $Jobs['Location'] . "<hr>";
+echo "<span class='HCWM-Detail-Title'>" . $Details[7] . "</span><br>";
+echo "<span class='HCWM-Detail-Label'>Compensation:</span> " . $Details[11] . "<br>";
+echo $Details[9] . " &#8226; " . $Details[8] . "<hr>";
 
 echo "<div id='HCWM_DIV_Left'>";
 	echo "<span class='HCWM-Detail-Company'>Contact:</span><br>";
-	echo "<span class='HCWM-Detail-Label'>Name:</span> " . $Jobs['Name'] . "<br>";
-	echo "<span class='HCWM-Detail-Label'>Email:</span> " . $Jobs['Email'] . "<br>";
-	echo "<span class='HCWM-Detail-Label'>Phone:</span> " . $Jobs['Phone'] . "<br>";
+	echo "<span class='HCWM-Detail-Label'>Name:</span> " . $Details[2.3] . " " . $Details[2.6] . "<br>";
+	echo "<span class='HCWM-Detail-Label'>Email:</span> " . $Details[3] . "<br>";
+	echo "<span class='HCWM-Detail-Label'>Phone:</span> " . $Details[4] . "<br>";
 	echo "<hr>";
-	echo "<span class='HCWM-Detail-Company'>" . $Jobs['Company'] . "</span>";
+	echo "<span class='HCWM-Detail-Company'>" . $Details[18] . "</span>";
 
 	echo "<fieldset>";
 		echo "<legend>&nbsp;Company Description&nbsp;</legend>";
-		echo $Jobs['CompanyDescription'];
+		echo $Details[24];
 	echo "</fieldset>";
 
-	echo "<a href='" . $Jobs['Website'] . "' target='_blank'>" . $Jobs['Website'] . "</a>";
-	echo $Jobs['CompanyAddress'];
+	echo "<a href='" . $Details[19] . "' target='_blank'>" . $Details[19] . "</a>";
+	echo $Details[25];
 echo "</div>";
 
 echo "<div id='HCWM_DIV_Right'>";
-	echo "<span class='HCWM-Detail-Label'>Start Date:</span> " . date_format(date_create($Jobs['Start Date']),"n/j/y") . "<br>";
-	echo "<span class='HCWM-Detail-Label'>End Date:</span> " . date_format(date_create($Jobs['End Date']),"n/j/y");
+	echo "<span class='HCWM-Detail-Label'>Start Date:</span> " . date_format(date_create($Details[15]),"n/j/y") . "<br>";
+	echo "<span class='HCWM-Detail-Label'>End Date:</span> " . date_format(date_create($Details[16]),"n/j/y");
 
 	echo "<fieldset>";
 		echo "<legend>&nbsp;Job Description&nbsp;</legend>";
-		echo $Jobs['Description'];
+		echo $Details[10];
 	echo "</fieldset>";
 
 	echo "<fieldset>";
 		echo "<legend>&nbsp;How to Apply&nbsp;</legend>";
-		echo $Jobs['Apply'];
+		echo $Details[27];
 	echo "</fieldset>";
 
-	echo $Jobs['File'];
-	echo $Jobs['Application'];
+	echo $Details[12];
+	echo $Details[13];
 	echo "<br>&nbsp;";
 echo "</div>";
-
-/*echo "<div class='HCWM-Detail-Wrapper'>";
-	echo "<span class='HCWM-Detail-Title'>" . $Jobs['Job Title'] . "</span><br>";
-	echo $Jobs['Type'] . " &#8226; " . $Jobs['Location'] . "<hr>";
-	echo "<span class='HCWM-Detail-Label'>Job Closing Date:</span> " . date_format(date_create($Jobs['Posting Close Date']),"n/j/y") . "<br>";
-	echo "<span class='HCWM-Detail-Label'>Compensation:</span> " . $Jobs['Wage'];
-
-	echo "<fieldset>";
-		echo "<legend>Job Description</legend>";
-		echo $Jobs['Description'];
-	echo "</fieldset>";
-
-	echo "<span class='HCWM-Detail-Label'>Start Date:</span> " . date_format(date_create($Jobs['Start Date']),"n/j/y") . "<br>";
-	echo "<span class='HCWM-Detail-Label'>End Date:</span> " . date_format(date_create($Jobs['End Date']),"n/j/y");
-
-	echo "<fieldset>";
-		echo "<legend>How to Apply</legend>";
-		echo $Jobs['Apply'];
-	echo "</fieldset>";
-
-	echo $Jobs['File'];
-	echo $Jobs['Application'];
-	echo "<br>&nbsp;";
-
-	echo "<hr>";
-	echo "<span class='HCWM-Detail-Company'>" . $Jobs['Company'] . "</span>";
-
-	echo "<fieldset>";
-		echo "<legend>Company Description</legend>";
-		echo $Jobs['CompanyDescription'];
-	echo "</fieldset>";
-
-	echo $Jobs['CompanyPhone'] . " &#8226; <a href='" . $Jobs['Website'] . "' target='_blank'>" . $Jobs['Website'] . "</a>";
-	echo $Jobs['CompanyAddress'];
-echo "</div>";*/
-
 ?>
