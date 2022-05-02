@@ -71,7 +71,7 @@ for($i = 0; $i < sizeof($Entries); $i++){
 		echo "</div>";
 
 		echo "<div class='HCWM-Listing-Col4'>";
-			echo "<a href='https://sandbox.jcgsolutions.com/job-details/?Entry=" . $Entries[$i]['id'] . "'>View Job</a>";
+			echo "<a href='https://hispanic-center.org/job-details//?Entry=" . $Entries[$i]['id'] . "'>View Job</a>";
 		echo "</div>";
 
 	echo "</div>";

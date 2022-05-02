@@ -1,5 +1,9 @@
+ver: 1.0.1
+Deployed: N/A
+	- Updated the details link as it was still pointing to the "sandbox site"
+
 ver: 1.0.0
-Deployed: NA
+Deployed: 2/7/22
 	- Updated queries to the Gravity Forms API
 	- Added primary filter to be "approved"
 	- Added date filter to only show posting AFTER the posting close date
